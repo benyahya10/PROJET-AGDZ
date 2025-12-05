@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>أكاديمية التمكين المهني وريادة الأعمال للشباب - سيدي سليمان</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      /* ألوان مستوحاة من اليونسكو */
+      --unesco-blue: #0c4da2;
+      --unesco-blue-light: #1f6fd0;
+      --unesco-blue-soft: #e6f0fb;
+      --accent-gold: #f4b41a;
+      --dark-gray: #333333;
+      --light-gray: #f5f5f5;
+      --white: #ffffff;
+      --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius-lg: 18px;
+      --transition-fast: 0.2s ease-in-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Tahoma", sans-serif;
+      background: linear-gradient(135deg, #f7f9fc, #e6f0fb);
+      color: var(--dark-gray);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* شريط علوي مصغر */
+    .top-bar {
+      background: var(--unesco-blue);
+      color: var(--white);
+      padding: 0.25rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-box {
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+    }
+
+    .lang-switch {
+      opacity: 0.85;
+    }
+
+    /* الهيدر الرئيسي – تم تصغيره وإلغاء الـ sticky */
+    header {
+      padding: 0.7rem 1.2rem;
+      background: radial-gradient(circle at top left, #ffffff 0, #e6f0fb 45%, #d5e4fb 100%);
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05);
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* شريط التحكم في إظهار/إخفاء البطاقة */
+    .hero-toggle-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-toggle-label {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .btn-primary {
+      background: var(--unesco-blue-light);
+      color: var(--white);
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: #1450a8;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--unesco-blue);
+      border-radius: 999px;
+      padding: 0.55rem 1.3rem;
+      border: 1px solid rgba(12, 77, 162, 0.35);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(12, 77, 162, 0.06);
+    }
+
+    /* لوحة البطاقة القابلة للطي */
+    .hero-panel {
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .hero-panel-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 0.8rem 0.3rem 0.6rem;
+    }
+
+    .hero-panel.collapsed {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: 0.2rem;
+    }
+
+    .hero-title-block {
+      max-width: 650px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background-color: rgba(12, 77, 162, 0.07);
+      color: var(--unesco-blue);
+      font-size: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-gold);
+    }
+
+    h1 {
+      margin: 0 0 0.3rem;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      color: var(--unesco-blue);
+    }
+
+    .hero-subtitle-en {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3567aa;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-subtitle-ar {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .hero-meta span {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(12, 77, 162, 0.13);
+    }
+
+    .hero-pill {
+      min-width: 160px;
+      max-width: 230px;
+      background: rgba(12, 77, 162, 0.95);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 0.7rem 0.9rem;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.8rem;
+    }
+
+    .hero-pill-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-pill-highlight {
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    /* المحتوى الرئيسي */
+    main {
+      max-width: 1200px;
+      margin: 1.2rem auto 2.5rem;
+      padding: 0 1.5rem 2rem;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(260px, 1.4fr);
+      gap: 1.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .layout-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    section.card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(12, 77, 162, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
+      gap: 0.6rem;
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--unesco-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-title-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: var(--unesco-blue-soft);
+      color: var(--unesco-blue);
+    }
+
+    p {
+      margin: 0 0 0.6rem;
+      font-size: 0.92rem;
+    }
+
+    ul {
+      padding-right: 1.1rem;
+      margin: 0.2rem 0 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: var(--light-gray);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .pill.strong {
+      background: rgba(12, 77, 162, 0.06);
+      color: var(--unesco-blue);
+      border-color: rgba(12, 77, 162, 0.2);
+      font-weight: 500;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.8rem;
+    }
+
+    .kpi-card {
+      background: var(--unesco-blue-soft);
+      border-radius: 14px;
+      padding: 0.7rem 0.8rem;
+      text-align: center;
+      border: 1px solid rgba(12, 77, 162, 0.12);
+    }
+
+    .kpi-number {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--unesco-blue);
+      margin-bottom: 0.15rem;
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* التايملاين */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.4rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .timeline-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--unesco-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--unesco-blue-light);
+      background: var(--white);
+    }
+
+    .timeline-content {
+      background: var(--light-gray);
+      border-radius: 12px;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.85rem;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-period {
+      font-size: 0.78rem;
+      color: #666;
+      margin-bottom: 0.1rem;
+    }
+
+    /* الأكوردون الخاص بحزم العمل */
+    .accordion {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(12, 77, 162, 0.12);
+      background: linear-gradient(135deg, #ffffff, #f4f7fc);
+    }
+
+    .accordion-item + .accordion-item {
+      border-top: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .accordion-header {
+      padding: 0.7rem 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    .accordion-header:hover {
+      background: rgba(12, 77, 162, 0.04);
+    }
+
+    .accordion-header span.label {
+      font-weight: 600;
+      color: var(--unesco-blue);
+    }
+
+    .accordion-header span.code {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .accordion-icon {
+      font-size: 1.1rem;
+      color: #777;
+      transition: var(--transition-fast);
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(90deg);
+      color: var(--unesco-blue);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .accordion-inner {
+      padding: 0.65rem 0.9rem 0.8rem;
+      border-top: 1px dashed rgba(0, 0, 0, 0.06);
+      font-size: 0.88rem;
+    }
+
+    .accordion-inner ul {
+      margin-top: 0.25rem;
+      margin-bottom: 0.1rem;
+    }
+
+    /* الشريط الجانبي */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .side-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1rem 1rem;
+      border: 1px solid rgba(12, 77, 162, 0.06);
+      font-size: 0.9rem;
+    }
+
+    .side-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--unesco-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: var(--unesco-blue-soft);
+      color: var(--unesco-blue);
+    }
+
+    .contact-item {
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-label {
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(12, 77, 162, 0.06);
+      color: #285b9e;
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #37c978;
+    }
+
+    footer {
+      padding: 1rem 1.5rem 1.4rem;
+      background: #0c4da2;
+      color: var(--white);
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .footer-inner span {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="logo-box">
+        UNESCO STYLE
+      </div>
+      <span>Youth Employability & Entrepreneurship Academy – YEEA</span>
+    </div>
+    <div class="lang-switch">
+      FR / AR
+    </div>
+  </div>
+
+  <!-- الهيدر مع زر إظهار/إخفاء البطاقة -->
+  <header>
+    <div class="header-inner">
+      <div class="hero-toggle-bar">
+        <button class="btn-primary" id="hero-toggle-btn">
+          اطلع على أهداف المشروع
+          <span>↓</span>
+        </button>
+        <span class="hero-toggle-label">
+          بطاقة تعريف المشروع (إظهار / إخفاء لتسهيل قراءة المحتوى أسفله)
+        </span>
+      </div>
+
+      <!-- البطاقة القابلة للطي -->
+      <div id="hero-panel" class="hero-panel collapsed">
+        <div class="hero-panel-inner">
+          <div class="hero-title-block">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              مشروع تمكين الشباب – إقليم سيدي سليمان
+            </div>
+            <h1>أكاديمية التمكين المهني وريادة الأعمال للشباب</h1>
+            <div class="hero-subtitle-en">Youth Employability & Entrepreneurship Academy (YEEA)</div>
+            <div class="hero-subtitle-ar">
+              برنامج متكامل لمدة 18 شهراً لتأهيل الشباب للاندماج في سوق الشغل أو إطلاق مشاريعهم الخاصة.
+            </div>
+
+            <div class="hero-meta">
+              <span>⏱ المدة: 18 شهراً</span>
+              <span>📍 جهة الرباط – سلا – القنيطرة | إقليم سيدي سليمان</span>
+              <span>🤝 منسق: جمعية أكذز وفضاء التكوين والتنمية اليونسكو</span>
+            </div>
+          </div>
+
+          <div class="hero-pill">
+            <div class="hero-pill-title">أثر مباشر على الشباب</div>
+            <div>
+              <span class="hero-pill-highlight">150+</span> شاباً مستفيداً من برامج التشغيل
+            </div>
+            <div style="margin-top:0.3rem;font-size:0.8rem;opacity:0.9;">
+              20 فكرة مشروع • 10 خطط عمل • 200 مقابلة عمل • 20 فرصة شغل حقيقية
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- المحتوى -->
+  <main>
+    <div class="layout-grid">
+      <div>
+        <!-- السياق -->
+        <section class="card" id="context">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              الخلفية والسياق المحلي
+            </div>
+            <div class="card-tag">Needs &amp; Context</div>
+          </div>
+          <p>
+            يعاني إقليم سيدي سليمان من هشاشة اقتصادية ملحوظة رغم غناه الفلاحي، حيث يواجه الشباب – خصوصاً
+            العاطلين، خريجي التكوين المهني، وشباب القرى – مجموعة من التحديات:
+          </p>
+          <ul>
+            <li>ضعف فرص الشغل داخل الإقليم وغياب آليات إدماج فعّالة.</li>
+            <li>نقص في مهارات التشغيل والمهارات الحياتية الأساسية.</li>
+            <li>محدودية التكوينات التطبيقية والفرص العملية.</li>
+            <li>فجوة واضحة بين مخرجات التكوين ومتطلبات سوق العمل.</li>
+            <li>غياب فرص اكتساب الخبرة المهنية والتجريب الميداني.</li>
+          </ul>
+          <p>
+            في المقابل يتوفر الإقليم على مؤهلات فلاحية واقتصادية وقطاعات قادرة على استيعاب الشباب
+            (الفلاحة، الخدمات، التعاونيات، الشركات المتوسطة)، وهو ما يمنح المشروع قاعدة قوية للتنفيذ.
+          </p>
+          <div class="pill-row">
+            <div class="pill strong">إقليم سيدي سليمان</div>
+            <div class="pill">شباب 18–35 سنة</div>
+            <div class="pill">مجال الفلاحة والخدمات</div>
+            <div class="pill">التكوين المهني</div>
+          </div>
+        </section>
+
+        <!-- الأهداف -->
+        <section class="card" id="objectives">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              الهدف العام والأهداف الخاصة
+            </div>
+            <div class="card-tag">Objectives</div>
+          </div>
+          <p>
+            <strong>الهدف العام:</strong> تمكين الشباب بإقليم سيدي سليمان من اكتساب مهارات مهنية وريادية حديثة
+            تساعدهم على الاندماج في سوق الشغل أو إطلاق مبادرات مقاولاتية محلية، عبر برامج تدريب، توجيه، تعاون دولي،
+            ومعرض تشغيل ختامي.
+          </p>
+          <p><strong>الأهداف الخاصة (SMART):</strong></p>
+          <ul>
+            <li>تكوين <strong>150 شاباً</strong> في المهارات المهنية خلال 18 شهراً.</li>
+            <li>تمكين <strong>60 شاباً</strong> من تطوير أفكار مشاريع صغيرة قابلة للتطبيق محلياً.</li>
+            <li>مواكبة الشباب في إنجاز <strong>10 خطط عمل</strong> لمشاريعهم.</li>
+            <li>تنظيم معرض تشغيلي يجمع <strong>30 شركة</strong> ويتيح <strong>200 مقابلة عمل</strong>.</li>
+            <li>توفير تكوينات أوروبية عبر زيارات دراسية وتبادل خبرات.</li>
+          </ul>
+
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-number">150</div>
+              <div class="kpi-label">مستفيد من برنامج التشغيل</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">60</div>
+              <div class="kpi-label">شاب يطوّر فكرة مشروع</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">10</div>
+              <div class="kpi-label">خطط عمل جاهزة</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">30</div>
+              <div class="kpi-label">شركة حاضرة في معرض التشغيل</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">200</div>
+              <div class="kpi-label">مقابلة عمل مباشرة</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- الفئة المستهدفة والمنهجية -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              الفئة المستهدفة والمنهجية
+            </div>
+            <div class="card-tag">Target Groups &amp; Methodology</div>
+          </div>
+          <p><strong>الفئة المستهدفة:</strong></p>
+          <ul>
+            <li>الشباب العاطلون (18–35 سنة).</li>
+            <li>خريجو وخريجات التكوين المهني.</li>
+            <li>شباب القرى في إقليم سيدي سليمان.</li>
+            <li>الشابات الباحثات عن فرص عمل أو مبادرات ذاتية.</li>
+            <li>شباب لديهم أفكار مشاريع بسيطة ويرغبون في تطويرها.</li>
+          </ul>
+
+          <p><strong>المنهجية المعتمدة:</strong></p>
+          <ul>
+            <li>تكوين حضوري عملي في المهارات المهنية والحياتية.</li>
+            <li>ورشات تطبيقية مرتبطة بسوق الشغل المحلي.</li>
+            <li>تدريب على ريادة الأعمال وإعداد نماذج أعمال.</li>
+            <li>زيارات ميدانية ودراسية (محلية ودولية) لتبادل الخبرات.</li>
+            <li>إشراك الشركات المحلية منذ البداية إلى غاية معرض التشغيل.</li>
+          </ul>
+        </section>
+
+        <!-- حزم العمل -->
+        <section class="card" id="work-packages">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              حزم العمل والأنشطة الرئيسية
+            </div>
+            <div class="card-tag">Work Packages (WP)</div>
+          </div>
+
+          <div class="accordion">
+            <!-- WP1 -->
+            <div class="accordion-item active">
+              <div class="accordion-header">
+                <div>
+                  <span class="code">WP1</span> – <span class="label">إدارة المشروع والتنسيق</span>
+                </div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body" style="max-height: 200px;">
+                <div class="accordion-inner">
+                  <p>
+                    يهم هذا المحور الجوانب الإدارية والتسييرية لضمان تنفيذ فعّال للمشروع:
+                  </p>
+                  <ul>
+                    <li>تنسيق إداري ومالي بين الشركاء.</li>
+                    <li>اجتماعات دورية لتتبع التقدم.</li>
+                    <li>إعداد تقارير مرحلية ونهائية.</li>
+                    <li>ضمان احترام الآجال والجودة.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- WP2 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div>
+                  <span class="code">WP2</span> – <span class="label">برنامج المهارات المهنية والتشغيل (Employability Bootcamp)</span>
+                </div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <p><strong>أنشطة رئيسية:</strong></p>
+                  <ul>
+                    <li>إعداد السيرة الذاتية (CV) بشكل احترافي.</li>
+                    <li>محاكاة مقابلات العمل (Job Interview Simulation).</li>
+                    <li>ورشات مهارات التواصل والعمل الجماعي.</li>
+                    <li>تقنيات البحث عن فرص الشغل.</li>
+                    <li>ورشات الاستعداد المهني (الانضباط، الحضور، ثقافة العمل).</li>
+                    <li>زيارات ميدانية لشركات محلية في الإقليم والجهة.</li>
+                  </ul>
+                  <p><strong>النتيجة:</strong> 150 شاباً جاهزين للاندماج في سوق العمل.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- WP3 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div>
+                  <span class="code">WP3</span> – <span class="label">برنامج ريادة الأعمال (Basic Entrepreneurship Program)</span>
+                </div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <p><strong>أنشطة رئيسية:</strong></p>
+                  <ul>
+                    <li>مقدمة في مفهوم ريادة الأعمال المجالية.</li>
+                    <li>تحليل الفرص الاقتصادية داخل الإقليم.</li>
+                    <li>إعداد نموذج أولي لـ Business Model.</li>
+                    <li>التوعية المالية للمشاريع الصغيرة (تكاليف، مداخيل، تسعير).</li>
+                    <li>تدريب على كيفية بدء مشروع فردي أو تعاوني محلي.</li>
+                  </ul>
+                  <p><strong>النتائج:</strong> 20 فكرة مشروع، 10 خطط عمل جاهزة للاستثمار.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- WP4 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div>
+                  <span class="code">WP4</span> – <span class="label">التبادل الأوروبي ورفع القدرات (EU Study Visits &amp; Capacity Building)</span>
+                </div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <p>
+                    يهدف هذا المحور إلى الاستفادة من تجارب أوروبية في مجالات التشغيل وريادة الأعمال:
+                  </p>
+                  <ul>
+                    <li>زيارات دراسية من/إلى شركاء أوروبيين.</li>
+                    <li>ورشات مشتركة حول إدماج الشباب في سوق الشغل.</li>
+                    <li>تكوين المدربين المحليين (Training of Trainers – TOT).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- WP5 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div>
+                  <span class="code">WP5</span> – <span class="label">التواصل والأثر (Communication &amp; Impact)</span>
+                </div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <p>
+                    يتضمن هذا المحور كل ما يتعلق بالتواصل الداخلي والخارجي:
+                  </p>
+                  <ul>
+                    <li>بناء هوية بصرية للمشروع (شعار، ألوان، مواد تواصلية).</li>
+                    <li>حملة رقمية للتعريف بالأنشطة والنتائج.</li>
+                    <li>إعداد ملخصات ومطبوعات تعريفية.</li>
+                    <li>إنتاج فيديو ترويجي وقصص نجاح للشباب المستفيدين.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- WP6 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div>
+                  <span class="code">WP6</span> – <span class="label">معرض التوظيف الختامي (Youth Job &amp; Career Fair)</span>
+                </div>
+                <div class="accordion-icon">›</div>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-inner">
+                  <p><strong>أنشطة رئيسية:</strong></p>
+                  <ul>
+                    <li>دعوة 30 شركة من سيدي سليمان والجهة.</li>
+                    <li>إجراء 200 مقابلة عمل مباشرة مع الشباب.</li>
+                    <li>خلق فضاء للتواصل بين الشركات والشباب والجمعيات.</li>
+                  </ul>
+                  <p>
+                    <strong>النتائج المتوقعة:</strong> 20 شاباً يحصلون على فرص عمل أو تدريب، وتعزيز علاقة
+                    الشركات بالنسيج الجمعوي.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- الأثر والاستدامة -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              الأثر والاستدامة
+            </div>
+            <div class="card-tag">Impact &amp; Sustainability</div>
+          </div>
+          <p><strong>أثر المشروع على الشباب:</strong></p>
+          <ul>
+            <li>تقوية ثقة الشباب في قدراتهم ومساراتهم المهنية.</li>
+            <li>اكتساب خبرات عملية حقيقية عبر التكوين والورشات.</li>
+            <li>تطوير مشاريع بسيطة قابلة للتنفيذ محلياً.</li>
+          </ul>
+
+          <p><strong>أثر المشروع على الإقليم:</strong></p>
+          <ul>
+            <li>توفير موارد بشرية مؤهلة تستجيب لحاجيات سوق الشغل المحلي.</li>
+            <li>المساهمة في تقليص البطالة وسط الشباب.</li>
+            <li>دعم المبادرات الاقتصادية والاجتماعية المحلية.</li>
+          </ul>
+
+          <p><strong>الاستدامة بعد نهاية المشروع:</strong></p>
+          <ul>
+            <li>استمرار التكوينات داخل الجمعية الشريكة.</li>
+            <li>تنظيم دورات سنوية للتشغيل والتوجيه المهني.</li>
+            <li>الحفاظ على شبكات التعاون مع الشركات المحلية.</li>
+            <li>إنشاء نادي خريجي المشروع لمواكبة المسار المهني.</li>
+          </ul>
+        </section>
+
+        <!-- الجدول الزمني -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <span class="card-title-dot"></span>
+              الجدول الزمني للمشروع
+            </div>
+            <div class="card-tag">Timeline</div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-badge">1</div>
+              <div class="timeline-content">
+                <div class="timeline-title">مرحلة التخطيط</div>
+                <div class="timeline-period">الشهر 1–2</div>
+                <div>إعداد التفاصيل التنظيمية، اختيار المستفيدين، وضع أدوات المتابعة والتقييم.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">2</div>
+              <div class="timeline-content">
+                <div class="timeline-title">التدريب المهني والتشغيل</div>
+                <div class="timeline-period">الشهر 3–6</div>
+                <div>تنفيذ Bootcamp التشغيل ومهارات الحياة، وزيارات ميدانية للشركات.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">3</div>
+              <div class="timeline-content">
+                <div class="timeline-title">ريادة الأعمال</div>
+                <div class="timeline-period">الشهر 5–11</div>
+                <div>ورشات ريادة الأعمال، صياغة الأفكار، إعداد نماذج الأعمال وخطط العمل.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">4</div>
+              <div class="timeline-content">
+                <div class="timeline-title">الزيارات الدولية</div>
+                <div class="timeline-period">الشهر 10–12</div>
+                <div>تنفيذ الزيارات الدراسية والتبادل مع الشركاء الأوروبيين وتكوين المدربين.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">5</div>
+              <div class="timeline-content">
+                <div class="timeline-title">دعم الشباب محلياً</div>
+                <div class="timeline-period">الشهر 13–17</div>
+                <div>مواكبة فردية وجماعية للمستفيدين في بحثهم عن الشغل أو تنزيل مشاريعهم.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">6</div>
+              <div class="timeline-content">
+                <div class="timeline-title">معرض التشغيل الختامي</div>
+                <div class="timeline-period">الشهر 18</div>
+                <div>تنظيم Youth Job &amp; Career Fair وجمع الشباب بالشركات الشريكة.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- الشريط الجانبي -->
+      <aside class="sidebar">
+        <div class="side-card">
+          <div class="side-card-title">بيانات سريعة عن المشروع</div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            جاهز للتقديم للجهات المانحة
+          </div>
+          <div class="chip-list" style="margin-bottom:0.7rem;">
+            <span class="chip">تشغيل الشباب</span>
+            <span class="chip">ريادة الأعمال</span>
+            <span class="chip">إدماج اقتصادي</span>
+            <span class="chip">تعاون دولي</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">المدة:</span> 18 شهراً
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">المكان:</span> إقليم سيدي سليمان – جهة الرباط سلا القنيطرة
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">الفئة:</span> شباب 18–35 سنة
+          </div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-card-title">الشركاء والمنسقون</div>
+          <p>
+            <strong>المنسق الرئيسي:</strong><br />
+            جمعية أكذز وفضاء التكوين والتنمية اليونسكو.
+          </p>
+          <p>
+            <strong>شركاء محتملون:</strong>
+          </p>
+          <ul>
+            <li>مؤسسات التكوين المهني.</li>
+            <li>شركات محلية وإقليمية.</li>
+            <li>شركاء أوروبيون في مجال الشباب والتشغيل.</li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <div class="side-card-title">مؤشرات القياس (KPIs)</div>
+          <ul>
+            <li>150 مستفيد من برنامج التشغيل.</li>
+            <li>20 فكرة مشروع ريادي.</li>
+            <li>10 خطط عمل جاهزة.</li>
+            <li>200 مقابلة عمل مع الشركات.</li>
+            <li>20 شاباً يحصلون على عمل أو تدريب.</li>
+            <li>4 دورات تدريبية أوروبية.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>أكاديمية التمكين المهني وريادة الأعمال للشباب – YEEA | إقليم سيدي سليمان</span>
+      <span>تصميم واجهة HTML تجريبية مستوحاة من ألوان وهوية اليونسكو</span>
+    </div>
+  </footer>
+
+  <script>
+    // تفعيل/إخفاء حزم العمل (الأكوردون)
+    document.querySelectorAll(".accordion-header").forEach(function (header) {
+      header.addEventListener("click", function () {
+        var item = header.parentElement;
+        var body = item.querySelector(".accordion-body");
+
+        // إغلاق العناصر الأخرى
+        document.querySelectorAll(".accordion-item").forEach(function (other) {
+          if (other !== item) {
+            other.classList.remove("active");
+            var otherBody = other.querySelector(".accordion-body");
+            if (otherBody) otherBody.style.maxHeight = null;
+          }
+        });
+
+        // تبديل الحالة للعنصر الحالي
+        item.classList.toggle("active");
+        if (item.classList.contains("active")) {
+          body.style.maxHeight = body.scrollHeight + "px";
+        } else {
+          body.style.maxHeight = null;
+        }
+      });
+    });
+
+    // زر إظهار/إخفاء بطاقة الهيدر + التمرير للأهداف عند الإظهار
+    const heroPanel = document.getElementById('hero-panel');
+    const heroToggleBtn = document.getElementById('hero-toggle-btn');
+    const objectivesSection = document.getElementById('objectives');
+
+    function updateHeroPanel(expand) {
+      if (expand) {
+        heroPanel.classList.remove('collapsed');
+        // ضبط ارتفاع مناسب
+        heroPanel.style.maxHeight = heroPanel.scrollHeight + 'px';
+        heroToggleBtn.textContent = 'إخفاء بطاقة المشروع';
+        // إضافة السهم
+        heroToggleBtn.insertAdjacentHTML('beforeend', '<span>↑</span>');
+        // التمرير إلى الأهداف
+        if (objectivesSection) {
+          objectivesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        heroPanel.classList.add('collapsed');
+        heroPanel.style.maxHeight = 0;
+        heroToggleBtn.textContent = 'اطلع على أهداف المشروع';
+        heroToggleBtn.insertAdjacentHTML('beforeend', '<span>↓</span>');
+      }
+    }
+
+    // حالة البداية: مخفي
+    updateHeroPanel(false);
+
+    heroToggleBtn.addEventListener('click', function () {
+      const isCollapsed = heroPanel.classList.contains('collapsed');
+      updateHeroPanel(isCollapsed);
+    });
+  </script>
+</body>
+</html>
